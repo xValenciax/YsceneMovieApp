@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -17,7 +18,7 @@ import com.google.android.material.button.MaterialButton;
 public class LoginActivity extends AppCompatActivity {
     ImageView signUp;
     ImageView Login;
-    TextView username, password;
+    TextView email, password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
 
         signUp = (ImageView) findViewById(R.id.imageView8);
         Login = (ImageView) findViewById(R.id.imageView10);
-        username = findViewById(R.id.editTextTextEmailAddress2);
+        email = findViewById(R.id.editTextTextEmailAddress2);
         password = findViewById(R.id.editTextTextPassword);
 
         signUp.setOnClickListener(new View.OnClickListener() {
@@ -39,21 +40,32 @@ public class LoginActivity extends AppCompatActivity {
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (TextUtils.isEmpty(username.getText().toString()) || TextUtils.isEmpty(password.getText().toString()))
+                final User[] users = new User[1];
+                String pass;
+                if (TextUtils.isEmpty(email.getText().toString()) || TextUtils.isEmpty(password.getText().toString()))
                 {
-                    Toast.makeText(LoginActivity.this,"EMPTY DATA PROVIDED", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this,"EMPTY DATA PROVIDED", Toast.LENGTH_SHORT).show();
+                    return;
                 }
-                else if(username.getText().toString().equals(set_username) && password.getText().toString().equals(set_password))
+
+                db_User database = new db_User(LoginActivity.this);
+                users[0] = database.getUser(1);
+                Log.d("TAG1", "onClick: " + users[0]);
+                if(password.getText().toString().equals(users[0].getPassword()))
                 {
+                    Log.d("TAG1", "onClick: Done signing in");
                     //Correct
                     Toast.makeText(LoginActivity.this,"LOGIN SUCCESSFUL", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(LoginActivity.this, HomePageActivity.class);
+
                     startActivity(intent);
                 }
-                else
+                else if(! password.getText().toString().equals(users[0].getPassword()))
                     //Incorrect
-                    Toast.makeText(LoginActivity.this,"LOGIN FAILED", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this,"Invalid Email or Password", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(LoginActivity.this,"This User Doesn't Exist", Toast.LENGTH_SHORT).show();
             }
         });
 

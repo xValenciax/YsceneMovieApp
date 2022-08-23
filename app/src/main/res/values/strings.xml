@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">YcseneApplication</string>
     <string name="Slider">Image Slider</string>
+    <string-array name="Years">
+        <item>1900</item>
+        <item>Comedy</item>
+        <item>Horror</item>
+        <item>Adventure</item>
+    </string-array>
 </resources>

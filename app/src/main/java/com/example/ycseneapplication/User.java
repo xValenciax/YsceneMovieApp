@@ -1,29 +1,24 @@
 package com.example.ycseneapplication;
 
+import java.util.List;
+
 public class User {
     private static int idCount = 0;
     private int id;
-    private String first_name;
-    private String last_name;
+    private String name;
+    private String email;
     private String phone_number;
     private String bio;
     private String password;
+    private List<Integer> favorite_movies;
 
     public User(){}
-    public User(String first_name, String last_name, String phone_number, String bio, String password) {
+
+    public User(String name, String email, String phone_number, String password) {
         idCount++;
         this.id = idCount;
-        this.first_name = first_name;
-        this.last_name = last_name;
-        this.phone_number = phone_number;
-        this.bio = bio;
-        this.password = password;
-    }
-    public User(String first_name, String last_name, String phone_number, String password) {
-        idCount++;
-        this.id = idCount;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.name = name;
+        this.email = email;
         this.phone_number = phone_number;
         this.password = password;
     }
@@ -36,20 +31,20 @@ public class User {
         this.id = id;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getName() {
+        return name;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getEmail() {
+        return email;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPhone_number() {
@@ -74,5 +69,21 @@ public class User {
 
     public void setDescription(String description) {
         this.bio = description;
+    }
+
+    public String getBio() {
+        return bio;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
+
+    public List<Integer> getFavorite_movies() {
+        return favorite_movies;
+    }
+
+    public void setFavorite_movies(List<Integer> favorite_movies) {
+        this.favorite_movies = favorite_movies;
     }
 }

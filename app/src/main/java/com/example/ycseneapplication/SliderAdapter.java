@@ -18,6 +18,7 @@ public class SliderAdapter extends SliderViewAdapter<SliderAdapter.Holder> {
         this.context = context;
         this.imgs = imgs;
     }
+
     @Override
     public Holder onCreateViewHolder(ViewGroup parent) {
 

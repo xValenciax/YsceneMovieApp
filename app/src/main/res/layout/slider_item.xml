@@ -10,6 +10,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:adjustViewBounds="true"
-            android:contentDescription="card"
-            android:scaleType="fitXY"/>
+            android:scaleType="fitXY"
+            android:contentDescription="card"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
