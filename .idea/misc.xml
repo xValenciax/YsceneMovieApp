@@ -9,10 +9,12 @@
         <entry key="..\:/Courses/Android/YcseneApplication/app/src/main/res/layout/activity_home_page.xml" value="0.2" />
         <entry key="..\:/Courses/Android/YcseneApplication/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Courses/Android/YcseneApplication/app/src/main/res/layout/activity_main.xml" value="0.22826086956521738" />
-        <entry key="..\:/Courses/Android/YcseneApplication/app/src/main/res/layout/activity_movie_page.xml" value="0.20863616930312098" />
+        <entry key="..\:/Courses/Android/YcseneApplication/app/src/main/res/layout/activity_movie_page.xml" value="0.264" />
         <entry key="..\:/Courses/Android/YcseneApplication/app/src/main/res/layout/activity_search_page.xml" value="0.264" />
         <entry key="..\:/Courses/Android/YcseneApplication/app/src/main/res/layout/activity_search_result.xml" value="0.2" />
         <entry key="..\:/Courses/Android/YcseneApplication/app/src/main/res/layout/activity_signup.xml" value="0.264" />
+        <entry key="..\:/Courses/Android/YcseneApplication/app/src/main/res/layout/activity_user_account.xml" value="0.2" />
+        <entry key="..\:/Courses/Android/YcseneApplication/app/src/main/res/layout/activity_view_all.xml" value="0.20863616930312098" />
         <entry key="..\:/Courses/Android/YcseneApplication/app/src/main/res/layout/recycler_item.xml" value="0.264" />
         <entry key="..\:/Courses/Android/YcseneApplication/app/src/main/res/layout/slider_item.xml" value="0.1" />
         <entry key="..\:/Courses/Android/YcseneApplication/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.124" />

@@ -3,11 +3,11 @@ package com.example.ycseneapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
@@ -28,8 +28,9 @@ public class HomePageActivity extends AppCompatActivity {
     private final String BASE_URL = "https://api.themoviedb.org/3/";
     private final String API_KEY = "cfd7f3ce6354b731591f4e5535a970cd";
     private final String PIC_BASE_URL = "http://image.tmdb.org/t/p/w500";
-    SliderView sliderView, sliderView2;
-    ImageView searchBtn;
+    private SliderView sliderView, sliderView2;
+    private ImageView searchBtn, homepageBtn, accountBtn, favBtn;
+    private TextView viewAllTopRated, viewAllPopular;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +39,56 @@ public class HomePageActivity extends AppCompatActivity {
 
         getTopRatedListPhoto();
         getPopularListPhoto();
-        searchBtn = (ImageView) findViewById(R.id.imageView9);
+        searchBtn = (ImageView) findViewById(R.id.Searchbtn);
+        homepageBtn = (ImageView) findViewById(R.id.HomePage);
+        accountBtn = (ImageView) findViewById(R.id.Account);
+        favBtn = (ImageView) findViewById(R.id.Favorites);
+        viewAllPopular = (TextView) findViewById(R.id.viewAll2);
+        viewAllTopRated = (TextView) findViewById(R.id.viewAll);
 
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomePageActivity.this, SearchPageActivity.class);
+                startActivity(intent);
+            }
+        });
+        homepageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomePageActivity.this, HomePageActivity.class);
+                startActivity(intent);
+            }
+        });
+        accountBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomePageActivity.this, UserAccountActivity.class);
+                startActivity(intent);
+            }
+        });
+        favBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomePageActivity.this, FavoritesActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        viewAllTopRated.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomePageActivity.this, ViewAllActivity.class);
+                intent.putExtra("SearchFor", "Top Rated");
+                startActivity(intent);
+            }
+        });
+
+        viewAllPopular.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomePageActivity.this, ViewAllActivity.class);
+                intent.putExtra("SearchFor", "Popular");
                 startActivity(intent);
             }
         });
@@ -53,7 +98,7 @@ public class HomePageActivity extends AppCompatActivity {
 
     public void getPopularListPhoto(){
         TMDB_API api = initializeRetrofit();
-        Call<SearchResults> fetchIds = api.fetchPopularMovies(API_KEY, 1);
+        Call<SearchResults> fetchIds = api.fetchPopularMovies(API_KEY, 1, false);
 
         fetchIds.enqueue(new Callback<SearchResults>() {
             @Override
@@ -88,7 +133,7 @@ public class HomePageActivity extends AppCompatActivity {
 
     public void getTopRatedListPhoto(){
         TMDB_API api = initializeRetrofit();
-        Call<SearchResults> fetchIds = api.fetchTopRatedMovies(API_KEY, 1);
+        Call<SearchResults> fetchIds = api.fetchTopRatedMovies(API_KEY, 1, false);
 
         fetchIds.enqueue(new Callback<SearchResults>() {
             @Override

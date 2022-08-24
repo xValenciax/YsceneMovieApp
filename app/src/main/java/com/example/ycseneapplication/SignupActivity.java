@@ -36,27 +36,17 @@ public class SignupActivity extends AppCompatActivity {
                 // check if all fields in sign up form are filled
                 if(validateName(name) && validateEmail(email) && validatePhone(phone) && validatePassword(password)
                         && confirmPassword(password, confirmPassword)){
+                    Log.d("TAGCreate", "onClick: Here");
+                    // create a new user with entered data
+                    User user = new User(name.getText().toString(), email.getText().toString(), phone.getText().toString(),
+                            password.getText().toString());
+                    // open a database connection
+                    db_User database = new db_User(SignupActivity.this);
+                    // add user's data to database
+                    database.AddUser(user);
 
-                    // open a new thread to save user's data in database
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            // create a new user with entered data
-                            User user = new User(name.getText().toString(), email.getText().toString(), phone.getText().toString(),
-                                    password.getText().toString());
-                            // open a database connection
-                            db_User database = new db_User(SignupActivity.this);
-                            // add user's data to database
-                            database.AddUser(user);
+                    Toast.makeText(SignupActivity.this, "Account Created Successfully", Toast.LENGTH_SHORT).show();
 
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(SignupActivity.this, "Account Created Successfully", Toast.LENGTH_SHORT);
-                                }
-                            });
-                        }
-                    }).start();
 
                     // start the login activity
                     Intent intent = new Intent(SignupActivity.this, LoginActivity.class);

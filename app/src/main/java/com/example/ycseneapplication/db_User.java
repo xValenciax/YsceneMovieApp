@@ -15,6 +15,7 @@ public class db_User extends SQLiteOpenHelper {
     private static String DB_NAME = "Project_DB";
     private static int DB_VERSION = 1;
     private static String TABLE_USERS = "users";
+    private static String KEY_ID = "id";
     private static String KEY_NAME = "name";
     private static String KEY_EMAIL = "email";
     private static String KEY_PHONE_NUMBER = "phone_number";
@@ -78,21 +79,21 @@ public class db_User extends SQLiteOpenHelper {
         return null;
     }
 
-    public String GetUserByEmail(String Email){
-        String query = "SELECT password FROM users WHERE email=?";
+    public int GetUserByEmail(String Email){
+        String query = "SELECT id FROM users WHERE email=?";
         SQLiteDatabase db = getReadableDatabase();
         Cursor cursor = db.rawQuery(query, new String[]{Email});
-        int password_index;
+        int id_index;
         if(cursor != null){
             cursor.moveToFirst();
-            password_index = cursor.getColumnIndex(KEY_PASSWORD);
-            if(password_index > 0) {
-                String passwordReturned = cursor.getString(password_index);
-                return passwordReturned;
+            id_index = cursor.getColumnIndex(KEY_ID);
+            if(id_index >= 0) {
+                int userId = cursor.getInt(id_index);
+                return userId;
             }
         }
         db.close();
-        return null;
+        return -1;
     }
 
     public void updateUser(User user){
@@ -104,7 +105,6 @@ public class db_User extends SQLiteOpenHelper {
         values.put(KEY_PHONE_NUMBER, user.getPhone_number());
         values.put(KEY_BIO, user.getDescription());
         values.put(KEY_PASSWORD, user.getPassword());
-
         db.update(TABLE_USERS, values, "id=?", new String[]{String.valueOf(user.getId())});
 
         db.close();
@@ -112,6 +112,11 @@ public class db_User extends SQLiteOpenHelper {
     public void deleteUser(int id){
         SQLiteDatabase db = getWritableDatabase();
         db.delete(TABLE_USERS, "id=?", new String[]{String.valueOf(id)});
+        db.close();
+    }
+    public void deleteDatabase(){
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TABLE_USERS, null, null);
         db.close();
     }
 }

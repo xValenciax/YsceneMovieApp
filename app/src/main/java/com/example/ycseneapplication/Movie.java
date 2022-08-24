@@ -2,37 +2,26 @@ package com.example.ycseneapplication;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Movie {
     private int id;
     private String title;
-    private String original_title;
     private String overview;
-    private Genre genre;
+    private List<Genre> genres;
     private String poster_path;
     private String release_date;
     @SerializedName("vote_average")
-    private float rating;
-    private String video_key;
+    private String rating;
 
-    public Movie(int id, String title, String overview, Genre genre, String poster_path, String release_date, float rating) {
+    public Movie(int id, String title, String overview, List<Genre> genres, String poster_path, String release_date, String rating) {
         this.id = id;
         this.title = title;
         this.overview = overview;
-        this.genre = genre;
+        this.genres = genres;
         this.poster_path = poster_path;
         this.release_date = release_date;
         this.rating = rating;
-    }
-
-    public Movie(int id, String title, String overview, Genre genre, String poster_path, String release_date, float rating, String video_key) {
-        this.id = id;
-        this.title = title;
-        this.overview = overview;
-        this.genre = genre;
-        this.poster_path = poster_path;
-        this.release_date = release_date;
-        this.rating = rating;
-        this.video_key = video_key;
     }
 
     public int getId() {
@@ -59,12 +48,12 @@ public class Movie {
         this.overview = overview;
     }
 
-    public Genre getGenre() {
-        return genre;
+    public List<Genre>  getGenres() {
+        return genres;
     }
 
-    public void setGenre(Genre genre) {
-        this.genre = genre;
+    public void setGenres(List<Genre> genres) {
+        this.genres = genres;
     }
 
     public String getPoster_path() {
@@ -83,19 +72,12 @@ public class Movie {
         this.release_date = release_date;
     }
 
-    public float getRating() {
+    public String getRating() {
         return rating;
     }
 
-    public void setRating(float rating) {
+    public void setRating(String rating) {
         this.rating = rating;
     }
 
-    public String getVideo_key() {
-        return video_key;
-    }
-
-    public void setVideo_key(String video_key) {
-        this.video_key = video_key;
-    }
 }

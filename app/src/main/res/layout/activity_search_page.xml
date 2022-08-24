@@ -52,7 +52,7 @@
         app:layout_constraintVertical_bias="0.131" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/Account2"
         android:layout_width="40dp"
         android:layout_height="45dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -64,7 +64,7 @@
         app:srcCompat="@drawable/icons8_account_96" />
 
     <ImageView
-        android:id="@+id/imageView11"
+        android:id="@+id/Searchbtn2"
         android:layout_width="55dp"
         android:layout_height="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -72,11 +72,11 @@
         app:layout_constraintHorizontal_bias="0.359"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_bias="1.004"
         app:srcCompat="@drawable/icons8_search_100" />
 
     <ImageView
-        android:id="@+id/imageView13"
+        android:id="@+id/HomePage2"
         android:layout_width="55dp"
         android:layout_height="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -88,7 +88,7 @@
         app:srcCompat="@drawable/icons8_home_96" />
 
     <ImageView
-        android:id="@+id/imageView15"
+        android:id="@+id/Favorites2"
         android:layout_width="55dp"
         android:layout_height="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -319,7 +319,7 @@
         app:layout_constraintVertical_bias="0.271" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/search"
+        android:id="@+id/save"
         android:layout_height="wrap_content"
         android:layout_width="120dp"
         android:drawableLeft="@drawable/icons8_search_100"
@@ -331,5 +331,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Movie"
         app:layout_constraintVertical_bias="0.319" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.346"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/save"
+        app:layout_constraintVertical_bias="0.22"
+        app:srcCompat="@drawable/rectangle_34" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

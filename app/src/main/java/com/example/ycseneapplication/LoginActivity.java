@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.Image;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -41,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 final User[] users = new User[1];
+                int userId = -1;
                 String pass;
                 if (TextUtils.isEmpty(email.getText().toString()) || TextUtils.isEmpty(password.getText().toString()))
                 {
@@ -49,8 +51,13 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 db_User database = new db_User(LoginActivity.this);
-                users[0] = database.getUser(1);
-                Log.d("TAG1", "onClick: " + users[0]);
+                userId = database.GetUserByEmail(email.getText().toString());
+                //send user id for other activities
+                SharedPreferences.Editor editor = getSharedPreferences("userId", MODE_PRIVATE).edit();
+                editor.putInt("id", userId);
+                editor.apply();
+                users[0] = database.getUser(userId);
+                Log.d("Userr", "onClick: " + users[0].getPassword());
                 if(password.getText().toString().equals(users[0].getPassword()))
                 {
                     Log.d("TAG1", "onClick: Done signing in");

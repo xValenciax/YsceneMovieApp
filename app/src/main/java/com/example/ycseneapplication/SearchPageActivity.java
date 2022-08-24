@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 
 public class SearchPageActivity extends AppCompatActivity {
@@ -20,6 +21,8 @@ public class SearchPageActivity extends AppCompatActivity {
     private EditText rating, Year, Movie;
 
     private AppCompatButton search;
+
+    private ImageView searchBtn, homepageBtn, favBtn, accountBtn;
 
     private CheckBox[] checkBoxes;
     private final Genre[] genres = {
@@ -59,13 +62,15 @@ public class SearchPageActivity extends AppCompatActivity {
         rating = (EditText) findViewById(R.id.rating);
         Year = (EditText) findViewById(R.id.Year);
         Movie = (EditText) findViewById(R.id.Movie);
-        search = (AppCompatButton) findViewById(R.id.search);
+        search = (AppCompatButton) findViewById(R.id.save);
 
 
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getCheckedGenres();
+                for(int i = 0; i < 12; i++)
+                    if(checkBoxes[i].isChecked())
+                        withGenres += genres[i].getId() + ",";
 
                 ratingVal= rating.getText().toString();
                 yearVal = Year.getText().toString();
@@ -76,19 +81,44 @@ public class SearchPageActivity extends AppCompatActivity {
                 intent.putExtra("searchYear", yearVal);
                 intent.putExtra("rating", ratingVal);
                 intent.putExtra("withGenres", withGenres);
+
                 startActivity(intent);
             }
         });
 
-    }
-    private void getCheckedGenres(){
-        new Thread(new Runnable() {
+        searchBtn = (ImageView) findViewById(R.id.Searchbtn2);
+        homepageBtn = (ImageView) findViewById(R.id.HomePage2);
+        accountBtn = (ImageView) findViewById(R.id.Account2);
+        favBtn = (ImageView) findViewById(R.id.Favorites2);
+
+        searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                for(int i = 0; i < 12; i++)
-                    if(checkBoxes[i].isChecked())
-                        withGenres += genres[i].getGenre() + ",";
+            public void onClick(View view) {
+                Intent intent = new Intent(SearchPageActivity.this, SearchPageActivity.class);
+                startActivity(intent);
             }
-        }).start();
+        });
+        homepageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SearchPageActivity.this, HomePageActivity.class);
+                startActivity(intent);
+            }
+        });
+        accountBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SearchPageActivity.this, UserAccountActivity.class);
+                startActivity(intent);
+            }
+        });
+        favBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SearchPageActivity.this, FavoritesActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }
